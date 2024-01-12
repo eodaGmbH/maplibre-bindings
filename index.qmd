@@ -18,9 +18,41 @@ When you click the **Render** button a document will be generated that includes 
 
 You can add options to executable code like this
 
-```{r}
+```         
 #| echo: false
 2 * 2
 ```
 
 The `echo: false` option disables the printing of code (only output is displayed).
+
+```{python}
+import maplibre
+import webbrowser
+
+from maplibre import Layer, LayerType, Map, MapOptions
+from maplibre.sources import GeoJSONSource
+
+vancouver_blocks = GeoJSONSource(
+    data="https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/geojson/vancouver-blocks.json",
+)
+
+map_options = MapOptions(
+    center=(-123.1256, 49.24658),
+    zoom=12,
+    hash=True,
+    pitch=35,
+)
+
+m = Map(map_options)
+m.add_layer(
+    Layer(
+        type=LayerType.LINE,
+        source=vancouver_blocks,
+        paint={"line-color": "white"},
+    )
+)
+
+m
+
+```
+
