@@ -36,3 +36,4 @@ rsconnect/
 /.quarto/
 renv
 .Rprofile
+venv/
